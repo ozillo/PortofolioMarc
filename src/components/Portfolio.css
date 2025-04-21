@@ -1,0 +1,262 @@
+/* === Estilos generales === */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  transition: background 0.3s, color 0.3s;
+}
+
+.portfolio-wrapper {
+  min-height: 100vh;
+  transition: background 0.3s, color 0.3s;
+  padding-bottom: 4rem;
+}
+
+.portfolio-wrapper.dark {
+  background-color: #111;
+  color: #eee;
+}
+
+.portfolio-wrapper.light {
+  background-color: #fff;
+  color: #111;
+}
+
+/* === Loader === */
+.loader-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.loader {
+  width: 40px;
+  height: 40px;
+  border: 5px solid #ccc;
+  border-top: 5px solid #00ffff;
+  border-radius: 50%;
+}
+
+/* === Navbar === */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: inherit;
+  display: flex;
+  justify-content: space-between; /* Mantiene el espacio entre el logo (si lo hubiera) y el icono hamburguesa */
+  align-items: center;
+  padding: 0.5rem 1rem;
+  z-index: 10;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Estilos para el menú de escritorio */
+.nav-desktop {
+  display: none; /* Ocultar por defecto en pantallas pequeñas */
+}
+
+.nav-list {
+  display: flex;
+  list-style: none;
+  gap: 0.5rem;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-button {
+  background: transparent;
+  border: none;
+  color: inherit;
+  font-size: 0.95rem;
+  padding: 0.5rem 0.75rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  border-radius: 8px;
+  transition: background 0.3s;
+}
+
+.nav-button:hover,
+.nav-button.active {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.theme-toggle {
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  padding: 0.5rem;
+  transition: transform 0.3s;
+}
+
+.theme-toggle:hover {
+  transform: scale(1.1);
+}
+
+/* Estilos para el menú móvil (hamburguesa) */
+.nav-mobile {
+  display: flex;
+  align-items: center;
+}
+
+.hamburger-icon {
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  padding: 0.5rem;
+  display: flex; /* Asegura que el icono se alinee bien */
+}
+
+.mobile-menu {
+  position: absolute;
+  top: 55px; /* Ajusta según la altura de tu navbar */
+  left: 0;
+  width: 100%;
+  background-color: inherit; /* Hereda el color de fondo del wrapper */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  gap: 0.5rem;
+  z-index: 10; /* Asegura que esté por encima de otros elementos */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.nav-button-mobile {
+  background: transparent;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0.75rem 1.5rem;
+  width: 100%;
+  text-align: center;
+  border-radius: 8px;
+}
+
+.nav-button-mobile.active,
+.nav-button-mobile:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.theme-toggle-mobile {
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0.75rem;
+  border-radius: 5px;
+  width: 100%;
+  text-align: center;
+}
+
+/* === Secciones === */
+.section {
+  padding: 6rem 2rem 4rem;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.presentation .profile-img {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-top: 1rem;
+}
+
+.title {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+  opacity: 0.8;
+}
+
+.section-title {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.content {
+  max-width: 800px;
+  margin: auto;
+}
+
+.skills-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.skills-list li {
+  padding: 0.5rem 1rem;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 6px;
+}
+
+/* === Partículas === */
+.particles {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+/* === Estilos para el "HELLO WORLD" animado === */
+.large {
+  font-size: 2em; /* Ajusta el tamaño según necesites */
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(11, minmax(auto, 1fr)); /* 11 columnas para las 11 letras/espacio */
+  gap: 0.2em; /* Espacio entre las letras */
+}
+
+.centered {
+  justify-content: center;
+  align-items: center; /* Si el contenedor padre lo requiere */
+}
+
+.square-grid {
+  /* Puedes añadir estilos específicos si necesitas un grid cuadrado */
+}
+
+.text-xl {
+  font-size: 1.5rem; /* Ajusta el tamaño de la fuente */
+}
+
+.text-xl span {
+  display: inline-block; /* Para que las transformaciones funcionen correctamente */
+}
+
+/* === Media Query para pantallas más grandes (ejemplo: 768px) === */
+@media (min-width: 768px) {
+  .navbar {
+    justify-content: center; /* Centra el contenido directamente dentro del navbar */
+  }
+
+  .nav-desktop {
+    display: flex; /* Mostrar el menú de escritorio */
+    width: auto; /* Permite que el ancho se ajuste al contenido */
+  }
+
+  .nav-mobile {
+    display: none; /* Ocultar el menú móvil */
+  }
+}
