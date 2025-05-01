@@ -1,11 +1,10 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Home, User, Settings, Users, Sun, Moon, Menu } from "lucide-react";
 import Particles from "react-tsparticles";
 import { loadFull } from "tsparticles";
-import HamburgerButton from "./HamburgerButton/HamburgerButton";
 import "./Portfolio.css";
-import { animate } from 'animejs'; // Importa la función animate
+import Navbar from "./Navbar/Navbar";
+import { animate } from "animejs"; // (si lo estás usando luego)
 
 export default function Portfolio() {
   const [activeSection, setActiveSection] = useState("presentation");
@@ -13,30 +12,21 @@ export default function Portfolio() {
   const [loading, setLoading] = useState(true);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-
-
   const scrollToSection = (id) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
     setActiveSection(id);
-    setIsMenuOpen(false); // Cerrar el menú al navegar
+    setIsMenuOpen(false);
   };
 
-  const toggleTheme = () => {
-    setIsDarkMode(!isDarkMode);
-  };
-
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
+  const toggleTheme = () => setIsDarkMode(!isDarkMode);
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   const particlesInit = async (main) => {
     await loadFull(main);
   };
 
   const particlesOptions = {
-    background: {
-      color: { value: isDarkMode ? "#111" : "#fff" },
-    },
+    background: { color: { value: isDarkMode ? "#111" : "#fff" } },
     particles: {
       color: {
         value: isDarkMode
@@ -47,22 +37,11 @@ export default function Portfolio() {
         enable: true,
         color: isDarkMode ? "#8888ff" : "#333333",
       },
-      move: {
-        enable: true,
-        speed: 1.2,
-      },
-      number: {
-        value: 60,
-      },
-      size: {
-        value: { min: 1, max: 3 },
-      },
-      shape: {
-        type: "circle",
-      },
-      opacity: {
-        value: 0.6,
-      },
+      move: { enable: true, speed: 1.2 },
+      number: { value: 60 },
+      size: { value: { min: 1, max: 3 } },
+      shape: { type: "circle" },
+      opacity: { value: 0.6 },
     },
   };
 
@@ -108,63 +87,59 @@ export default function Portfolio() {
         className="particles"
       />
 
-      {/* Nav */}
-      <nav className="navbar">
-        <div className="nav-desktop">
-          <ul className="nav-list">
-            <li>
-              <button className={`nav-button ${activeSection === "presentation" ? "active" : ""}`} onClick={() => scrollToSection("presentation")}> <Home size={18} /> Inicio </button>
-            </li>
-            <li>
-              <button className={`nav-button ${activeSection === "about" ? "active" : ""}`} onClick={() => scrollToSection("about")}> <User size={18} /> Sobre mí </button>
-            </li>
-            <li>
-              <button className={`nav-button ${activeSection === "skills" ? "active" : ""}`} onClick={() => scrollToSection("skills")}> <Settings size={18} /> Habilidades </button>
-            </li>
-            <li>
-              <button className={`nav-button ${activeSection === "collaborations" ? "active" : ""}`} onClick={() => scrollToSection("collaborations")}> <Users size={18} /> Colaboraciones </button>
-            </li>
-            <li>
-              <button onClick={toggleTheme} className="theme-toggle"> {isDarkMode ? <Sun size={18} /> : <Moon size={18} />} </button>
-            </li>
-          </ul>
-        </div>
-
-        <div className="nav-mobile">
-        <HamburgerButton isOpen={isMenuOpen} onClick={toggleMenu} />
-          {isMenuOpen && (
-            <div className="mobile-menu">
-              <button className={`nav-button-mobile ${activeSection === "presentation" ? "active" : ""}`} onClick={() => scrollToSection("presentation")}> <Home size={18} /> Inicio </button>
-              <button className={`nav-button-mobile ${activeSection === "about" ? "active" : ""}`} onClick={() => scrollToSection("about")}> <User size={18} /> Sobre mí </button>
-              <button className={`nav-button-mobile ${activeSection === "skills" ? "active" : ""}`} onClick={() => scrollToSection("skills")}> <Settings size={18} /> Habilidades </button>
-              <button className={`nav-button-mobile ${activeSection === "collaborations" ? "active" : ""}`} onClick={() => scrollToSection("collaborations")}> <Users size={18} /> Colaboraciones </button>
-              <button onClick={toggleTheme} className="theme-toggle-mobile"> {isDarkMode ? <Sun size={18} /> : <Moon size={18} />} </button>
-            </div>
-          )}
-        </div>
-      </nav>
+      <Navbar
+        activeSection={activeSection}
+        scrollToSection={scrollToSection}
+        toggleTheme={toggleTheme}
+        isDarkMode={isDarkMode}
+        isMenuOpen={isMenuOpen}
+        toggleMenu={toggleMenu}
+      />
 
       {/* Sections */}
       <section id="presentation" className="section presentation">
-        <motion.div initial={{ opacity: 0, y: -30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 1 }} viewport={{ once: true }}>
+        <motion.div
+          initial={{ opacity: 0, y: -30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
+          viewport={{ once: true }}
+        >
           <h1 className="title">Hola, soy Marc Mateo</h1>
-          <p className="subtitle">Frontend Developer apasionado por crear experiencias web increíbles.</p>
-
-          <img src="https://res.cloudinary.com/dw9b8eqmc/image/upload/v1724336926/Captura_de_pantalla_2024-08-22_a_las_16.28.09_novftw.png" alt="Foto de presentación" className="profile-img" />
+          <p className="subtitle">
+            Frontend Developer apasionado por crear experiencias web increíbles.
+          </p>
+          <img
+            src="https://res.cloudinary.com/dw9b8eqmc/image/upload/v1724336926/Captura_de_pantalla_2024-08-22_a_las_16.28.09_novftw.png"
+            alt="Foto de presentación"
+            className="profile-img"
+          />
         </motion.div>
       </section>
 
       <section id="about" className="section about">
-        <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} className="content">
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 1 }}
+          viewport={{ once: true }}
+          className="content"
+        >
           <h2 className="section-title">Sobre mí</h2>
           <p>
-            Soy un desarrollador frontend con experiencia en React, diseño responsivo y animaciones modernas. Me encanta aprender y colaborar en proyectos creativos.
+            Soy un desarrollador frontend con experiencia en React, diseño responsivo y
+            animaciones modernas. Me encanta aprender y colaborar en proyectos creativos.
           </p>
         </motion.div>
       </section>
 
       <section id="skills" className="section skills">
-        <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} className="content">
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 1 }}
+          viewport={{ once: true }}
+          className="content"
+        >
           <h2 className="section-title">Habilidades</h2>
           <ul className="skills-list">
             <li>React</li>
@@ -178,10 +153,18 @@ export default function Portfolio() {
       </section>
 
       <section id="collaborations" className="section collaborations">
-        <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ duration: 1 }} viewport={{ once: true }} className="content">
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 1 }}
+          viewport={{ once: true }}
+          className="content"
+        >
           <h2 className="section-title">Colaboraciones</h2>
           <p>
-            Aquí puedes mostrar proyectos en los que has trabajado con otros desarrolladores o diseñadores. Puedes incluir enlaces, imágenes o descripciones breves de cada colaboración.
+            Aquí puedes mostrar proyectos en los que has trabajado con otros desarrolladores o
+            diseñadores. Puedes incluir enlaces, imágenes o descripciones breves de cada
+            colaboración.
           </p>
         </motion.div>
       </section>
