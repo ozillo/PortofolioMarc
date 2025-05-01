@@ -10,12 +10,15 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@react-three/drei": "^10.0.7",
+    "@react-three/fiber": "^9.1.2",
     "animejs": "^4.0.1",
     "framer-motion": "^12.6.5",
     "lucide-react": "^0.488.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-tsparticles": "^2.12.2",
+    "three": "^0.176.0",
     "tsparticles": "^3.8.1"
   },
   "devDependencies": {

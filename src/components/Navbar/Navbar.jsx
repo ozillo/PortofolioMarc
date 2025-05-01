@@ -1,7 +1,6 @@
 // components/Navbar.jsx
 import { Home, User, Settings, Users, Sun, Moon } from "lucide-react";
-import HamburgerButton from "../HamburgerButton/HamburgerButton";
-
+import HamburgerButton from "../HamburgerButton";
 export default function Navbar({ activeSection, scrollToSection, toggleTheme, isDarkMode, isMenuOpen, toggleMenu }) {
   return (
     <nav className="navbar">
