@@ -1,21 +1,41 @@
-import { motion } from "framer-motion";
+// components/Sections/About.jsx
+import React from "react";
+import "./About.css";
 
-const About = () => (
-  <section id="about" className="section about">
-    <motion.div
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      transition={{ duration: 1 }}
-      viewport={{ once: true }}
-      className="content"
-    >
-      <h2 className="section-title">Sobre mí</h2>
-      <p>
-        Soy un desarrollador frontend con experiencia en React, diseño responsivo y
-        animaciones modernas. Me encanta aprender y colaborar en proyectos creativos.
-      </p>
-    </motion.div>
-  </section>
-);
+const About = () => {
+  const title = "Sobre mí";
+  const paragraph =
+    "Soy un desarrollador frontend con experiencia en React, diseño responsivo y animaciones modernas. Me encanta aprender y colaborar en proyectos creativos.";
+
+  return (
+    <section id="about" className="section about">
+      <div className="about-content">
+        <h2 className="bounce-line section-title">
+          {title.split("").map((char, index) => (
+            <span
+              key={index}
+              className={`bounce-letter${char === " " ? " space" : ""}`}
+              style={{ "--index": index }}
+            >
+              {char === " " ? "\u00A0" : char}
+            </span>
+          ))}
+        </h2>
+
+        <p className="bounce-line about-text">
+          {paragraph.split("").map((char, index) => (
+            <span
+              key={index}
+              className={`bounce-letter${char === " " ? " space" : ""}`}
+              style={{ "--index": index + title.length }}
+            >
+              {char === " " ? "\u00A0" : char}
+            </span>
+          ))}
+        </p>
+      </div>
+    </section>
+  );
+};
 
 export default About;

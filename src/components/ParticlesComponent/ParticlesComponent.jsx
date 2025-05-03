@@ -1,26 +1,49 @@
-import React from 'react';
-import Particles from 'react-tsparticles';  // Importar Particles desde react-tsparticles
+// components/ParticlesComponent/ParticlesComponent.jsx
+import React from "react";
+import Particles from "react-tsparticles";
+import { loadFull } from "tsparticles";
 
 const ParticlesComponent = ({ isDarkMode }) => {
+  const particlesInit = async (main) => {
+    await loadFull(main);
+  };
+
   const particlesOptions = {
     background: {
       color: {
-        value: isDarkMode ? "#111" : "#fff", // Ajustar el color de fondo según el modo
+        value: isDarkMode ? "#111111" : "#ffffff",
       },
     },
     fullScreen: {
-      enable: false, // Deshabilitar fullscreen para control total del área
+      enable: false, // Usamos CSS para ubicarlo dentro del wrapper
     },
     particles: {
       number: {
-        value: 50,  // Número de partículas
+        value: 60,
+        density: {
+          enable: true,
+          area: 800,
+        },
+      },
+      color: {
+        value: isDarkMode ? "#ffffff" : "#000000",
       },
       size: {
-        value: 3,  // Tamaño de las partículas
+        value: 2.5,
       },
       move: {
         enable: true,
-        speed: 1,  // Velocidad de las partículas
+        speed: 1,
+      },
+      opacity: {
+        value: 0.3,
+      },
+      links: {
+        enable: true,
+        distance: 120,
+        color: isDarkMode ? "#ffffff" : "#000000",
+        opacity: 0.2,
+        width: 1,
       },
     },
   };
@@ -28,7 +51,8 @@ const ParticlesComponent = ({ isDarkMode }) => {
   return (
     <Particles
       id="tsparticles"
-      options={particlesOptions}  // Pasamos las opciones
+      init={particlesInit}
+      options={particlesOptions}
       className="particles"
     />
   );

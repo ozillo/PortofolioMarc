@@ -2,13 +2,13 @@ import { useState, useEffect } from "react";
 import "./Portfolio.css";
 import Navbar from "./Navbar";
 import { Presentation, About, Skills, Collaborations } from "./Sections";
-import ParticlesComponent from "./ParticlesComponent/ParticlesComponent";
-import Loader from "./Loader/Loader"; 
+import Loader from "./Loader/Loader";
 
 export default function Portfolio() {
   const [activeSection, setActiveSection] = useState("presentation");
   const [isDarkMode, setIsDarkMode] = useState(true);
   const [loading, setLoading] = useState(true);
+  const [showLoader, setShowLoader] = useState(true);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const scrollToSection = (id) => {
@@ -21,31 +21,22 @@ export default function Portfolio() {
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const sections = ["presentation", "about", "skills", "collaborations"];
-      for (let id of sections) {
-        const el = document.getElementById(id);
-        const rect = el?.getBoundingClientRect();
-        if (rect?.top >= 0 && rect?.top < window.innerHeight / 2) {
-          setActiveSection(id);
-          break;
-        }
-      }
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 1500);
     return () => clearTimeout(timer);
   }, []);
 
-  if (loading) return <Loader />;
+  useEffect(() => {
+    if (!loading) {
+      const fadeOutTimer = setTimeout(() => setShowLoader(false), 800); // duración del fade
+      return () => clearTimeout(fadeOutTimer);
+    }
+  }, [loading]);
+
+  if (showLoader) return <Loader isDarkMode={isDarkMode} show={showLoader} />;
 
   return (
     <div className={`portfolio-wrapper ${isDarkMode ? "dark" : "light"}`}>
-      <ParticlesComponent isDarkMode={isDarkMode} />
+    
 
       <Navbar
         activeSection={activeSection}

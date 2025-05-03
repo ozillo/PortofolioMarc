@@ -1,0 +1,145 @@
+/* components/Sections/Presentation.css */
+
+.presentation {
+  padding: 6rem 2rem 4rem;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.presentation-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  max-width: 1000px;
+  width: 100%;
+  text-align: center;
+  position: relative;
+  z-index: 1; /* ✅ Sobre Three.js */
+}
+
+.text-block {
+  max-width: 600px;
+  width: 100%;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 767px) {
+  .text-block {
+    max-width: 90%;
+  }
+}
+
+@media (min-width: 768px) {
+  .presentation-content {
+    flex-direction: row;
+    justify-content: center;
+    text-align: left;
+  }
+
+  .text-block {
+    text-align: left;
+  }
+}
+
+.bounce-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.bounce-group .bounce-line + .bounce-line {
+  margin-top: 0.75rem;
+}
+
+.bounce-line {
+  display: inline-block;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  color: currentColor;
+  cursor: default;
+  line-height: 1.5;
+  letter-spacing: 0.05em;
+  white-space: normal;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.bounce-line.title {
+  font-size: clamp(3rem, 10vw, 6rem);
+}
+
+.bounce-line.name-line {
+  font-size: clamp(3.5rem, 12vw, 7rem);
+  font-weight: 800;
+}
+
+.bounce-line.subtitle {
+  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+  opacity: 0.8;
+  margin-top: 1rem;
+  line-height: 1.6;
+}
+
+.bounce-letter {
+  display: inline-block;
+  margin: 0 0.015em;
+  transition: transform 0.2s ease, color 0.3s ease;
+  word-break: keep-all;
+}
+
+.bounce-letter:hover {
+  animation: bounce 0.4s ease;
+  transform-origin: bottom;
+  color: #00ff88;
+}
+
+@media (max-width: 767px) {
+  .bounce-letter {
+    animation: bounceAuto 2s ease-in-out infinite;
+    animation-delay: calc(0.03s * var(--index));
+  }
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateY(0);
+  }
+  30% {
+    transform: translateY(-8px);
+  }
+  50% {
+    transform: translateY(0px);
+  }
+  70% {
+    transform: translateY(-4px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes bounceAuto {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.bounce-letter.space {
+  width: 0.4em;
+}
+
+.profile-img {
+  width: clamp(140px, 25vw, 200px);
+  height: clamp(140px, 25vw, 200px);
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
