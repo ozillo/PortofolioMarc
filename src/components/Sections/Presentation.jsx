@@ -1,9 +1,7 @@
 import { motion } from "framer-motion";
-import Background3D from "../Background3D"; // Ajusta ruta si estás en otra estructura
 
 const Presentation = () => (
   <section id="presentation" className="section presentation">
-    <Background3D />
     <motion.div
       initial={{ opacity: 0, y: -30 }}
       whileInView={{ opacity: 1, y: 0 }}
