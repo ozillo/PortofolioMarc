@@ -3,6 +3,7 @@ import "./Portfolio.css";
 import Navbar from "./Navbar";
 import { Presentation, About, Skills, Collaborations } from "./Sections";
 import Loader from "./Loader/Loader";
+import FloatingParticles from "./Effects/FloatingParticles";
 
 export default function Portfolio() {
   const [activeSection, setActiveSection] = useState("presentation");
@@ -46,10 +47,9 @@ export default function Portfolio() {
         isMenuOpen={isMenuOpen}
         toggleMenu={toggleMenu}
       />
-
       <Presentation />
       <About />
-      <Skills />
+      <Skills /> 
       <Collaborations />
     </div>
   );

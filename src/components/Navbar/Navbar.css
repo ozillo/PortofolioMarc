@@ -1,135 +1,151 @@
 /* === Navbar === */
 .navbar {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    background-color: inherit;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.5rem 1rem;
-    z-index: 10;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.06); /* glass por defecto */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  z-index: 10;
+  color: currentColor;
+}
+
+/* ✅ Modo oscuro: fondo más opaco para mayor contraste */
+body[data-theme="dark"] .navbar {
+  background: rgba(18, 18, 18, 0.75);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* Menú de escritorio */
+.nav-desktop {
+  display: none;
+}
+
+.nav-list {
+  display: flex;
+  list-style: none;
+  gap: 0.5rem;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-button {
+  background: transparent;
+  border: none;
+  color: inherit;
+  font-size: 0.95rem;
+  padding: 0.5rem 0.75rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  border-radius: 8px;
+  transition: background 0.3s;
+}
+
+.nav-button:hover,
+.nav-button.active {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Botón de cambio de tema */
+.theme-toggle {
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  padding: 0.5rem;
+  transition: transform 0.3s;
+}
+
+.theme-toggle:hover {
+  transform: scale(1.1);
+}
+
+/* Menú móvil */
+.nav-mobile {
+  display: flex;
+  align-items: center;
+}
+
+.hamburger-icon {
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  padding: 0.5rem;
+  display: flex;
+}
+
+.mobile-menu {
+  position: absolute;
+  top: 55px;
+  left: 0;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.06); /* glass por defecto */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  gap: 0.5rem;
+  z-index: 10;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ✅ Modo oscuro para el menú móvil */
+body[data-theme="dark"] .mobile-menu {
+  background: rgba(18, 18, 18, 0.75);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.nav-button-mobile {
+  background: transparent;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0.75rem 1.5rem;
+  width: 100%;
+  text-align: center;
+  border-radius: 8px;
+}
+
+.nav-button-mobile.active,
+.nav-button-mobile:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.theme-toggle-mobile {
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0.75rem;
+  border-radius: 5px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Media queries */
+@media (min-width: 768px) {
+  .navbar {
+    justify-content: center;
   }
-  
-  /* Menú de escritorio */
+
   .nav-desktop {
+    display: flex;
+    width: auto;
+  }
+
+  .nav-mobile {
     display: none;
   }
-  
-  .nav-list {
-    display: flex;
-    list-style: none;
-    gap: 0.5rem;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .nav-button {
-    background: transparent;
-    border: none;
-    color: inherit;
-    font-size: 0.95rem;
-    padding: 0.5rem 0.75rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    border-radius: 8px;
-    transition: background 0.3s;
-  }
-  
-  .nav-button:hover,
-  .nav-button.active {
-    background-color: rgba(255, 255, 255, 0.1);
-  }
-  
-  /* Botón de cambio de tema */
-  .theme-toggle {
-    background: none;
-    border: none;
-    color: inherit;
-    cursor: pointer;
-    padding: 0.5rem;
-    transition: transform 0.3s;
-  }
-  
-  .theme-toggle:hover {
-    transform: scale(1.1);
-  }
-  
-  /* Menú móvil */
-  .nav-mobile {
-    display: flex;
-    align-items: center;
-  }
-  
-  .hamburger-icon {
-    background: none;
-    border: none;
-    color: inherit;
-    cursor: pointer;
-    padding: 0.5rem;
-    display: flex;
-  }
-  
-  .mobile-menu {
-    position: absolute;
-    top: 55px;
-    left: 0;
-    width: 100%;
-    background-color: inherit;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 1rem;
-    gap: 0.5rem;
-    z-index: 10;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  }
-  
-  .nav-button-mobile {
-    background: transparent;
-    border: none;
-    color: inherit;
-    cursor: pointer;
-    font-size: 1rem;
-    padding: 0.75rem 1.5rem;
-    width: 100%;
-    text-align: center;
-    border-radius: 8px;
-  }
-  
-  .nav-button-mobile.active,
-  .nav-button-mobile:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-  }
-  
-  .theme-toggle-mobile {
-    background: none;
-    border: none;
-    color: inherit;
-    cursor: pointer;
-    font-size: 1rem;
-    padding: 0.75rem;
-    border-radius: 5px;
-    width: 100%;
-    text-align: center;
-  }
-  
-  /* Media queries */
-  @media (min-width: 768px) {
-    .navbar {
-      justify-content: center;
-    }
-  
-    .nav-desktop {
-      display: flex;
-      width: auto;
-    }
-  
-    .nav-mobile {
-      display: none;
-    }
-  }
-  
+}

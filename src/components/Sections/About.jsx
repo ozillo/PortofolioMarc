@@ -1,37 +1,40 @@
-// components/Sections/About.jsx
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import "./About.css";
 
 const About = () => {
-  const title = "Sobre mí";
   const paragraph =
     "Soy un desarrollador frontend con experiencia en React, diseño responsivo y animaciones modernas. Me encanta aprender y colaborar en proyectos creativos.";
+
+  const paragraphRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("fade-in");
+        } else {
+          entry.target.classList.remove("fade-in");
+        }
+      },
+      { threshold: 0.4 }
+    );
+
+    if (paragraphRef.current) {
+      observer.observe(paragraphRef.current);
+    }
+
+    return () => {
+      if (paragraphRef.current) {
+        observer.unobserve(paragraphRef.current);
+      }
+    };
+  }, []);
 
   return (
     <section id="about" className="section about">
       <div className="about-content">
-        <h2 className="bounce-line section-title">
-          {title.split("").map((char, index) => (
-            <span
-              key={index}
-              className={`bounce-letter${char === " " ? " space" : ""}`}
-              style={{ "--index": index }}
-            >
-              {char === " " ? "\u00A0" : char}
-            </span>
-          ))}
-        </h2>
-
-        <p className="bounce-line about-text">
-          {paragraph.split("").map((char, index) => (
-            <span
-              key={index}
-              className={`bounce-letter${char === " " ? " space" : ""}`}
-              style={{ "--index": index + title.length }}
-            >
-              {char === " " ? "\u00A0" : char}
-            </span>
-          ))}
+        <p className="about-text fade-target" ref={paragraphRef}>
+          {paragraph}
         </p>
       </div>
     </section>

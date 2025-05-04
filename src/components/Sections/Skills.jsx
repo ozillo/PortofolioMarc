@@ -1,5 +1,31 @@
 import { motion } from "framer-motion";
+import {
+  SiReact,
+  SiJavascript,
+  SiHtml5,
+  SiCss3,
+  SiTailwindcss,
+  SiFigma,
+  SiGithub,
+  SiNodedotjs,
+  SiAdobephotoshop,
+  SiAdobeillustrator,
+  SiAdobeaftereffects,
+} from "react-icons/si";
 import "./Skills.css";
+
+const skills = [
+  { icon: <SiReact />, name: "React" },
+  { icon: <SiJavascript />, name: "JavaScript" },
+  { icon: <><SiHtml5 /> <SiCss3 /></>, name: "HTML & CSS" },
+  { icon: <SiTailwindcss />, name: "Tailwind CSS" },
+  { icon: <SiNodedotjs />, name: "Node.js" },
+  { icon: <SiFigma />, name: "Figma" },
+  { icon: <SiGithub />, name: "Git & GitHub" },
+  { icon: <SiAdobephotoshop />, name: "Photoshop" },
+  { icon: <SiAdobeillustrator />, name: "Illustrator" },
+  { icon: <SiAdobeaftereffects />, name: "After Effects" },
+];
 
 const Skills = () => (
   <section id="skills" className="section skills">
@@ -27,15 +53,16 @@ const Skills = () => (
         transition={{ duration: 1, delay: 0.4 }}
         viewport={{ once: true }}
       >
-        {["React", "JavaScript", "HTML & CSS", "Tailwind CSS", "Figma", "Git & GitHub"].map((skill, index) => (
+        {skills.map((skill, index) => (
           <motion.li
-            key={skill}
+            key={skill.name}
             initial={{ opacity: 0, y: 20, z: -50 }}
             whileInView={{ opacity: 1, y: 0, z: 0 }}
             transition={{ delay: 0.5 + index * 0.1, duration: 0.6 }}
             viewport={{ once: true }}
+            title={skill.name}
           >
-            {skill}
+            {skill.icon}
           </motion.li>
         ))}
       </motion.ul>

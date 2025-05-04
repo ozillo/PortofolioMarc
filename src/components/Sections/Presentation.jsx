@@ -1,11 +1,9 @@
-// components/Sections/Presentation.jsx
 import React from "react";
 import "./Presentation.css";
 
 const Presentation = () => {
   const line1 = "Hola, soy";
-  const name1 = "Marc";
-  const name2 = "Mateo";
+  const name = "Marc Mateo";
   const subtitle = "Frontend Developer";
 
   return (
@@ -18,37 +16,21 @@ const Presentation = () => {
         />
 
         <div className="text-block">
-          <h1 className="bounce-group">
-            <div className="bounce-line title">
+          <h1 className="presentation-title">
+            <div className="line">
               {line1.split("").map((char, index) => (
-                <span
-                  key={index}
-                  className={`bounce-letter${char === " " ? " space" : ""}`}
-                  style={{ "--index": index }}
-                >
+                <span key={index} className="letter" style={{ "--i": index }}>
                   {char === " " ? "\u00A0" : char}
                 </span>
               ))}
             </div>
 
-            <div className="bounce-line title name-line">
-              {name1.split("").map((char, index) => (
+            <div className="line name-line">
+              {name.split("").map((char, index) => (
                 <span
                   key={index}
-                  className={`bounce-letter${char === " " ? " space" : ""}`}
-                  style={{ "--index": index + line1.length }}
-                >
-                  {char === " " ? "\u00A0" : char}
-                </span>
-              ))}
-            </div>
-
-            <div className="bounce-line title name-line">
-              {name2.split("").map((char, index) => (
-                <span
-                  key={index}
-                  className={`bounce-letter${char === " " ? " space" : ""}`}
-                  style={{ "--index": index + line1.length + name1.length }}
+                  className="letter"
+                  style={{ "--i": index + line1.length }}
                 >
                   {char === " " ? "\u00A0" : char}
                 </span>
@@ -56,13 +38,9 @@ const Presentation = () => {
             </div>
           </h1>
 
-          <p className="bounce-line subtitle">
+          <p className="presentation-subtitle">
             {subtitle.split("").map((char, index) => (
-              <span
-                key={index}
-                className={`bounce-letter${char === " " ? " space" : ""}`}
-                style={{ "--index": index }}
-              >
+              <span key={index} className="letter" style={{ "--i": index }}>
                 {char === " " ? "\u00A0" : char}
               </span>
             ))}

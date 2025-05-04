@@ -1,0 +1,87 @@
+.container {
+  width: 100%;
+  max-width: 1200px;
+  min-height: 400px;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin: 2rem auto;
+}
+
+.card {
+  width: 300px;
+  height: 380px;
+  background-color: var(--card-bg, rgba(30, 30, 30, 0.9));
+  border-radius: 10px;
+  box-shadow: 0 70px 63px -60px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+  position: relative;
+  background-position: center;
+  background-size: 300px;
+  background-repeat: no-repeat;
+  transition: background-size 0.8s, background-position 0.8s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: currentColor;
+}
+
+.card:hover {
+  background-size: 600px;
+  background-position: left center;
+}
+
+.border {
+  width: 90%;
+  height: 90%;
+  border-radius: 10px;
+  transition: border 0.8s;
+  position: relative;
+}
+
+.card:hover .border {
+  border: 1px solid currentColor;
+}
+
+/* ✅ Glassmorphism en el título al hacer hover */
+.card-title {
+  position: relative;
+  padding: 0.75rem 1.5rem;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  z-index: 1;
+  text-align: center;
+}
+
+.card:hover .card-title {
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  color: currentColor;
+}
+
+.icons {
+  position: absolute;
+  top: 220px;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  color: currentColor;
+}
+
+.icons .fa {
+  font-size: 1.2rem;
+  opacity: 0;
+  transition: opacity 0.8s;
+}
+
+.card:hover .fa {
+  opacity: 1;
+}

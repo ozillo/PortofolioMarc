@@ -1,34 +1,43 @@
-/* components/Sections/Skills.css */
-
 .skills {
-    perspective: 1000px;
-  }
-  
-  .skills-list {
-    list-style: none;
-    padding: 0;
-    margin: 2rem 0 0;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1rem;
-    transform-style: preserve-3d;
-  }
-  
-  .skills-list li {
-    padding: 0.75rem 1.25rem;
-    background-color: rgba(255, 255, 255, 0.05);
-    border-radius: 8px;
-    font-weight: bold;
-    color: inherit;
-    box-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
-    backdrop-filter: blur(3px);
-    transform: translateZ(0);
-    transition: transform 0.3s, box-shadow 0.3s;
-  }
-  
-  .skills-list li:hover {
-    transform: translateZ(10px) scale(1.05);
-    box-shadow: 0 0 15px rgba(0, 255, 136, 0.6);
-  }
-  
+  perspective: 1000px;
+  padding: 8rem 2rem 6rem;
+  text-align: center;
+}
+
+.section-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  margin-bottom: 2rem;
+}
+
+.skills-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  transform-style: preserve-3d;
+  max-width: 1000px;
+}
+
+.skills-list li {
+  padding: 1rem;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  font-size: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: currentColor;
+  box-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
+  backdrop-filter: blur(3px);
+  transform: translateZ(0);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.skills-list li:hover {
+  transform: translateZ(10px) scale(1.05);
+  box-shadow: 0 0 15px rgba(0, 255, 136, 0.6);
+}
