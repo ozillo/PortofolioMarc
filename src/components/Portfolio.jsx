@@ -4,6 +4,7 @@ import Navbar from "./Navbar";
 import { Presentation, About, Skills, Collaborations } from "./Sections";
 import Loader from "./Loader/Loader";
 import FloatingParticles from "./Effects/FloatingParticles";
+import SectionDivider from "./Effects/SectionDivider";
 
 export default function Portfolio() {
   const [activeSection, setActiveSection] = useState("presentation");
@@ -48,8 +49,11 @@ export default function Portfolio() {
         toggleMenu={toggleMenu}
       />
       <Presentation />
+      <SectionDivider />
       <About />
-      <Skills /> 
+      <SectionDivider />
+      <Skills />
+      <SectionDivider />
       <Collaborations />
     </div>
   );

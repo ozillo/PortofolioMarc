@@ -38,6 +38,6 @@
 }
 
 .skills-list li:hover {
-  transform: translateZ(10px) scale(1.05);
+  transform: translateZ(10px) scale(1.05) rotateY(6deg);
   box-shadow: 0 0 15px rgba(0, 255, 136, 0.6);
 }

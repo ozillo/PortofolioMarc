@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 10rem 6rem 6rem;
+  padding: 6rem 4rem;
   text-align: center;
 }
 
@@ -17,10 +17,6 @@
 }
 
 @media (min-width: 1024px) {
-  .about {
-    padding: 10rem 6rem 6rem;
-  }
-
   .about-content {
     gap: 3rem;
   }
@@ -32,8 +28,8 @@
 
 .about-text {
   font-family: 'Poppins', sans-serif;
-  font-size: clamp(1.7rem, 4vw, 2.2rem); /* Más grande */
-  font-weight: 700; /* Más grueso */
+  font-size: clamp(1.7rem, 4vw, 2.2rem);
+  font-weight: 700;
   line-height: 2;
   opacity: 0.95;
   text-align: center;
@@ -43,7 +39,6 @@
   white-space: normal;
 }
 
-/* Bounce-letter sigue aquí si más adelante lo reutilizas */
 .bounce-letter {
   display: inline-block;
   margin: 0 0.015em;
@@ -85,7 +80,6 @@
   width: 0.4em;
 }
 
-/* ✅ Fade-in animación scroll */
 .fade-target {
   opacity: 0;
   transform: translateY(40px);

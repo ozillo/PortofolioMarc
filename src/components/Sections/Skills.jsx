@@ -11,15 +11,24 @@ import {
   SiAdobephotoshop,
   SiAdobeillustrator,
   SiAdobeaftereffects,
+  SiMysql,
+  SiWordpress,
+  SiFramer,
+  SiWix,
 } from "react-icons/si";
 import "./Skills.css";
 
 const skills = [
   { icon: <SiReact />, name: "React" },
   { icon: <SiJavascript />, name: "JavaScript" },
-  { icon: <><SiHtml5 /> <SiCss3 /></>, name: "HTML & CSS" },
+  { icon: <SiHtml5 />, name: "HTML5" },
+  { icon: <SiCss3 />, name: "CSS3" },
   { icon: <SiTailwindcss />, name: "Tailwind CSS" },
   { icon: <SiNodedotjs />, name: "Node.js" },
+  { icon: <SiMysql />, name: "SQL" },
+  { icon: <SiWordpress />, name: "WordPress" },
+  { icon: <SiWix />, name: "Wix Studio" },
+  { icon: <SiFramer />, name: "Framer" },
   { icon: <SiFigma />, name: "Figma" },
   { icon: <SiGithub />, name: "Git & GitHub" },
   { icon: <SiAdobephotoshop />, name: "Photoshop" },
