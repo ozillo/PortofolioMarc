@@ -1,5 +1,6 @@
 import React from "react";
 import "./Presentation.css";
+import { EvervaultCard } from "../Effects/EvervaultCard";
 
 const Presentation = () => {
   const line1 = "Hola, soy";
@@ -9,11 +10,12 @@ const Presentation = () => {
   return (
     <section id="presentation" className="section presentation">
       <div className="presentation-content">
-        <img
-          className="profile-img"
-          src="https://res.cloudinary.com/dw9b8eqmc/image/upload/v1724336926/Captura_de_pantalla_2024-08-22_a_las_16.28.09_novftw.png"
-          alt="Foto de perfil"
-        />
+        <EvervaultCard>
+          <img
+            src="https://res.cloudinary.com/dw9b8eqmc/image/upload/v1724336926/Captura_de_pantalla_2024-08-22_a_las_16.28.09_novftw.png"
+            alt="Foto de perfil"
+          />
+        </EvervaultCard>
 
         <div className="text-block">
           <h1 className="presentation-title">

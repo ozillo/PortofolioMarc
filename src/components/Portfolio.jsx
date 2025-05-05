@@ -48,7 +48,7 @@ export default function Portfolio() {
         isMenuOpen={isMenuOpen}
         toggleMenu={toggleMenu}
       />
-      <Presentation />
+      <Presentation isDarkMode={isDarkMode} />
       <SectionDivider />
       <About />
       <SectionDivider />
