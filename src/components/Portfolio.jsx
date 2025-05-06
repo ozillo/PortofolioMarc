@@ -1,10 +1,16 @@
 import { useState, useEffect } from "react";
 import "./Portfolio.css";
 import Navbar from "./Navbar";
+import Footer from "./Footer/Footer";
+import Header from "./Header/Header"
 import { Presentation, About, Skills, Collaborations } from "./Sections";
 import Loader from "./Loader/Loader";
 import FloatingParticles from "./Effects/FloatingParticles";
 import SectionDivider from "./Effects/SectionDivider";
+
+
+
+
 
 export default function Portfolio() {
   const [activeSection, setActiveSection] = useState("presentation");
@@ -40,14 +46,14 @@ export default function Portfolio() {
     <div className={`portfolio-wrapper ${isDarkMode ? "dark" : "light"}`}>
     
 
-      <Navbar
-        activeSection={activeSection}
-        scrollToSection={scrollToSection}
-        toggleTheme={toggleTheme}
-        isDarkMode={isDarkMode}
-        isMenuOpen={isMenuOpen}
-        toggleMenu={toggleMenu}
-      />
+    <Header
+  activeSection={activeSection}
+  scrollToSection={scrollToSection}
+  toggleTheme={toggleTheme}
+  isDarkMode={isDarkMode}
+  isMenuOpen={isMenuOpen}
+  toggleMenu={toggleMenu}
+/>
       <Presentation isDarkMode={isDarkMode} />
       <SectionDivider />
       <About />
@@ -55,6 +61,8 @@ export default function Portfolio() {
       <Skills />
       <SectionDivider />
       <Collaborations />
+      <Footer/>
+
     </div>
   );
 }

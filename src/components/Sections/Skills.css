@@ -8,6 +8,7 @@
   font-family: 'Poppins', sans-serif;
   font-size: clamp(2.5rem, 6vw, 4rem);
   margin-bottom: 2rem;
+  color: currentColor;
 }
 
 .skills-list {

@@ -39,47 +39,6 @@
   white-space: normal;
 }
 
-.bounce-letter {
-  display: inline-block;
-  margin: 0 0.015em;
-  transition: transform 0.2s ease, color 0.3s ease;
-}
-
-.bounce-letter:hover {
-  animation: bounce 0.4s ease;
-  transform-origin: bottom;
-  color: #00ff88;
-}
-
-@media (max-width: 767px) {
-  .bounce-letter {
-    animation: none !important;
-    transform: none !important;
-  }
-}
-
-@keyframes bounce {
-  0% {
-    transform: translateY(0);
-  }
-  30% {
-    transform: translateY(-6px);
-  }
-  50% {
-    transform: translateY(0px);
-  }
-  70% {
-    transform: translateY(-3px);
-  }
-  100% {
-    transform: translateY(0);
-  }
-}
-
-.bounce-letter.space {
-  width: 0.4em;
-}
-
 .fade-target {
   opacity: 0;
   transform: translateY(40px);
