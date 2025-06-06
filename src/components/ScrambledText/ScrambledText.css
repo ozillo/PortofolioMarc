@@ -1,0 +1,45 @@
+.center-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 1rem;
+  box-sizing: border-box;
+  transition: background 0.3s ease;
+}
+
+.text-block {
+  max-width: 90%;
+  font-family: monospace;
+  font-size: clamp(24px, 6vw, 40px);
+  text-align: center;
+  padding: 1rem 2rem;
+  border-radius: 1rem;
+  line-height: 1.6;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* 🌞 Modo claro */
+.light .center-wrapper {
+  background: #fff;
+}
+
+.light .text-block {
+  color: #111;
+  background: rgba(0, 0, 0, 0.05);
+}
+
+/* 🌙 Modo oscuro */
+.dark .center-wrapper {
+  background: #000;
+}
+
+.dark .text-block {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.char {
+  will-change: transform;
+  display: inline-block;
+}

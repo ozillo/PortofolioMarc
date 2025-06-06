@@ -18,15 +18,21 @@ const Collaborations = () => {
   const collaborators = [
     {
       name: "Saüc Floristeria",
-      img: "https://res.cloudinary.com/dw9b8eqmc/image/upload/v1701634348/PortofolioMarcMateo/macbookSauc_sngifv.png",
+      img: "https://res.cloudinary.com/dw9b8eqmc/image/upload/v1747453718/PortofolioMarcMateo/SaucMockup444_ugihj8.png",
+      description: "Diseño visual y branding para floristería artesanal.",
+      url: "https://saucfloristeria.com",
     },
     {
       name: "DevLink",
-      img: "https://res.cloudinary.com/dw9b8eqmc/image/upload/v1701634090/PortofolioMarcMateo/macbookDevlink_fahuxv.png",
+      img: "https://res.cloudinary.com/dw9b8eqmc/image/upload/v1747454116/PortofolioMarcMateo/DevLinkMockup444_imop50.png",
+      description: "Plataforma para conectar desarrolladores con oportunidades.",
+      url: "https://devlink.com",
     },
     {
       name: "Fem Cami",
-      img: "https://res.cloudinary.com/dw9b8eqmc/image/upload/v1746285184/PortofolioMarcMateo/FemCamiportofolio_e6dlqv.png",
+      img: "https://res.cloudinary.com/dw9b8eqmc/image/upload/v1747454116/PortofolioMarcMateo/FemCamiMockup444_vt1mcq.png",
+      description: "Campaña comunitaria enfocada en la sostenibilidad.",
+      url: "https://femcami.org",
     },
   ];
 
@@ -63,7 +69,11 @@ const Collaborations = () => {
             >
               <div className="border">
                 <h2 className="card-title">{card.name}</h2>
+                <p className="card-description">{card.description}</p>
                 <div className="icons">
+                  <a href={card.url} target="_blank" rel="noopener noreferrer" title="Sitio web">
+                    <i className="fa fa-globe" aria-hidden="true"></i>
+                  </a>
                   <i className="fa fa-codepen" aria-hidden="true"></i>
                   <i className="fa fa-instagram" aria-hidden="true"></i>
                   <i className="fa fa-dribbble" aria-hidden="true"></i>
