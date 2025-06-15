@@ -64,11 +64,11 @@ export default function Portfolio() {
       </ScrambledText>
 
       <div className="scroll-divider">
-      <ScrollVelocity
+      {/* <ScrollVelocity
       texts={['React Javascript GSAP CSS Tailwind Node.js Git Github', 'Figma Framer Wix Photoshop Illustrator After Effects']}
       velocity={velocity}
       className="custom-scroll-text"
-      />
+      /> */}
       </div>
       <Skills />
       <Collaborations />
