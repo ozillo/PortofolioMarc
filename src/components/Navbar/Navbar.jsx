@@ -1,7 +1,15 @@
-// components/Navbar.jsx
 import { useEffect, useState } from "react";
-import { Home, User, Settings, Users, Sun, Moon } from "lucide-react";
+import {
+  HomeIcon,
+  UserIcon,
+  SettingsIcon,
+  UsersRoundIcon,
+  SunIcon,
+  MoonIcon,
+} from "lucide-react";
+import { motion } from "framer-motion";
 import HamburgerButton from "../HamburgerButton";
+import "./Navbar.css";
 
 export default function Navbar({
   activeSection,
@@ -22,99 +30,88 @@ export default function Navbar({
   }, []);
 
   return (
-    <nav className={`navbar ${scrolled ? "scrolled" : ""}`}>
+    <motion.nav
+      initial={{ y: -50, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      className={`navbar ${scrolled ? "scrolled" : ""}`}
+    >
+      {/* Desktop */}
       <div className="nav-desktop">
         <ul className="nav-list">
           <li>
             <button
-              className={`nav-button ${
-                activeSection === "presentation" ? "active" : ""
-              }`}
+              className={`nav-button ${activeSection === "presentation" ? "active" : ""}`}
               onClick={() => scrollToSection("presentation")}
+              aria-label="Ir a Inicio"
             >
-              <Home size={18} /> Inicio
+              <HomeIcon size={18} /> Inicio
             </button>
           </li>
           <li>
             <button
-              className={`nav-button ${
-                activeSection === "about" ? "active" : ""
-              }`}
+              className={`nav-button ${activeSection === "about" ? "active" : ""}`}
               onClick={() => scrollToSection("about")}
+              aria-label="Ir a Sobre mí"
             >
-              <User size={18} /> Sobre mí
+              <UserIcon size={18} /> Sobre mí
             </button>
           </li>
           <li>
             <button
-              className={`nav-button ${
-                activeSection === "skills" ? "active" : ""
-              }`}
+              className={`nav-button ${activeSection === "skills" ? "active" : ""}`}
               onClick={() => scrollToSection("skills")}
+              aria-label="Ir a Habilidades"
             >
-              <Settings size={18} /> Habilidades
+              <SettingsIcon size={18} /> Habilidades
             </button>
           </li>
           <li>
             <button
-              className={`nav-button ${
-                activeSection === "collaborations" ? "active" : ""
-              }`}
+              className={`nav-button ${activeSection === "collaborations" ? "active" : ""}`}
               onClick={() => scrollToSection("collaborations")}
+              aria-label="Ir a Colaboraciones"
             >
-              <Users size={18} /> Colaboraciones
+              <UsersRoundIcon size={18} /> Colaboraciones
             </button>
           </li>
           <li>
-            <button onClick={toggleTheme} className="theme-toggle">
-              {isDarkMode ? <Sun size={18} /> : <Moon size={18} />}
+            <button onClick={toggleTheme} className="theme-toggle" aria-label="Cambiar tema">
+              {isDarkMode ? <SunIcon size={18} /> : <MoonIcon size={18} />}
             </button>
           </li>
         </ul>
       </div>
 
+      {/* Mobile */}
       <div className="nav-mobile">
         <HamburgerButton isOpen={isMenuOpen} onClick={toggleMenu} />
         {isMenuOpen && (
           <div className="mobile-menu">
-            <button
-              className={`nav-button-mobile ${
-                activeSection === "presentation" ? "active" : ""
-              }`}
-              onClick={() => scrollToSection("presentation")}
-            >
-              <Home size={18} /> Inicio
-            </button>
-            <button
-              className={`nav-button-mobile ${
-                activeSection === "about" ? "active" : ""
-              }`}
-              onClick={() => scrollToSection("about")}
-            >
-              <User size={18} /> Sobre mí
-            </button>
-            <button
-              className={`nav-button-mobile ${
-                activeSection === "skills" ? "active" : ""
-              }`}
-              onClick={() => scrollToSection("skills")}
-            >
-              <Settings size={18} /> Habilidades
-            </button>
-            <button
-              className={`nav-button-mobile ${
-                activeSection === "collaborations" ? "active" : ""
-              }`}
-              onClick={() => scrollToSection("collaborations")}
-            >
-              <Users size={18} /> Colaboraciones
-            </button>
-            <button onClick={toggleTheme} className="theme-toggle-mobile">
-              {isDarkMode ? <Sun size={18} /> : <Moon size={18} />}
+            {[
+              { id: "presentation", label: "Inicio", icon: <HomeIcon size={18} /> },
+              { id: "about", label: "Sobre mí", icon: <UserIcon size={18} /> },
+              { id: "skills", label: "Habilidades", icon: <SettingsIcon size={18} /> },
+              { id: "collaborations", label: "Colaboraciones", icon: <UsersRoundIcon size={18} /> },
+            ].map(({ id, label, icon }) => (
+              <button
+                key={id}
+                className={`nav-button-mobile ${activeSection === id ? "active" : ""}`}
+                onClick={() => {
+                  scrollToSection(id);
+                  toggleMenu() ;
+                }}
+              >
+                {icon} {label}
+              </button>
+            ))}
+
+            <button onClick={toggleTheme} className="theme-toggle-mobile" aria-label="Cambiar tema">
+              {isDarkMode ? <SunIcon size={18} /> : <MoonIcon size={18} />}
             </button>
           </div>
         )}
       </div>
-    </nav>
+    </motion.nav>
   );
 }
