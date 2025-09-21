@@ -5,7 +5,6 @@ import Footer from "./Footer/Footer";
 import Header from "./Header/Header";
 import { Presentation, Skills } from "./Sections";
 import AnimatedLoader from "./AnimatedLoader/AnimatedLoader";
-import ScrambledText from "./ScrambledText/ScrambledText";
 import ScrollStack, { ScrollStackItem } from "./ScrollStack/ScrollStack";
 import AboutTypewriter from "./AboutTypewriter/AboutTypewriter"; // Nuevo
 
@@ -102,15 +101,7 @@ export default function Portfolio() {
       {/* Sección About con efecto typewriter */}
       <AboutTypewriter lenis={lenisInstance} />
 
-      {/* <ScrambledText
-        className="scrambled-text-demo"
-        radius={100}
-        duration={1.2}
-        speed={0.5}
-        scrambleChars=".:"
-      >
-        Soy un desarrollador frontend con experiencia en React, diseño responsivo y animaciones modernas. Me encanta aprender y colaborar en proyectos creativos
-      </ScrambledText> */}
+     
 
       <Skills />
 

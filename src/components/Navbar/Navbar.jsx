@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import {
   HomeIcon,
   UserIcon,
@@ -7,9 +7,16 @@ import {
   SunIcon,
   MoonIcon,
 } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import HamburgerButton from "../HamburgerButton";
 import "./Navbar.css";
+
+const LINKS = [
+  { id: "presentation", label: "Inicio", Icon: HomeIcon, aria: "Ir a Inicio" },
+  { id: "about", label: "Sobre mí", Icon: UserIcon, aria: "Ir a Sobre mí" },
+  { id: "skills", label: "Habilidades", Icon: SettingsIcon, aria: "Ir a Habilidades" },
+  { id: "collaborations", label: "Colaboraciones", Icon: UsersRoundIcon, aria: "Ir a Colaboraciones" },
+];
 
 export default function Navbar({
   activeSection,
@@ -20,93 +27,113 @@ export default function Navbar({
   toggleMenu,
 }) {
   const [scrolled, setScrolled] = useState(false);
+  const [scrollDir, setScrollDir] = useState("up");
+  const lastY = useRef(0);
+  const shouldReduceMotion = useReducedMotion();
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 10);
+    const onScroll = () => {
+      const y = window.scrollY;
+      setScrolled(y > 10);
+      const diff = y - lastY.current;
+      if (Math.abs(diff) > 6) {
+        setScrollDir(diff > 0 ? "down" : "up");
+        lastY.current = y;
+      }
     };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  const navMotion = useMemo(
+    () =>
+      shouldReduceMotion
+        ? { initial: false, animate: { opacity: 1 } }
+        : { initial: { y: -50, opacity: 0 }, animate: { y: 0, opacity: 1 } },
+    [shouldReduceMotion]
+  );
 
   return (
     <motion.nav
-      initial={{ y: -50, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
+      role="navigation"
+      aria-label="Principal"
+      {...navMotion}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className={`navbar ${scrolled ? "scrolled" : ""}`}
+      className={["navbar", scrolled ? "scrolled" : "", scrollDir === "down" ? "nav-hide" : "nav-show"].join(" ")}
     >
-      {/* Desktop */}
+      {/* Desktop Pill Nav */}
       <div className="nav-desktop">
-        <ul className="nav-list">
-          <li>
-            <button
-              className={`nav-button ${activeSection === "presentation" ? "active" : ""}`}
-              onClick={() => scrollToSection("presentation")}
-              aria-label="Ir a Inicio"
-            >
-              <HomeIcon size={18} /> Inicio
-            </button>
-          </li>
-          <li>
-            <button
-              className={`nav-button ${activeSection === "about" ? "active" : ""}`}
-              onClick={() => scrollToSection("about")}
-              aria-label="Ir a Sobre mí"
-            >
-              <UserIcon size={18} /> Sobre mí
-            </button>
-          </li>
-          <li>
-            <button
-              className={`nav-button ${activeSection === "skills" ? "active" : ""}`}
-              onClick={() => scrollToSection("skills")}
-              aria-label="Ir a Habilidades"
-            >
-              <SettingsIcon size={18} /> Habilidades
-            </button>
-          </li>
-          <li>
-            <button
-              className={`nav-button ${activeSection === "collaborations" ? "active" : ""}`}
-              onClick={() => scrollToSection("collaborations")}
-              aria-label="Ir a Colaboraciones"
-            >
-              <UsersRoundIcon size={18} /> Colaboraciones
-            </button>
-          </li>
-          <li>
-            <button onClick={toggleTheme} className="theme-toggle" aria-label="Cambiar tema">
-              {isDarkMode ? <SunIcon size={18} /> : <MoonIcon size={18} />}
-            </button>
-          </li>
-        </ul>
-      </div>
-
-      {/* Mobile */}
-      <div className="nav-mobile">
-        <HamburgerButton isOpen={isMenuOpen} onClick={toggleMenu} />
-        {isMenuOpen && (
-          <div className="mobile-menu">
-            {[
-              { id: "presentation", label: "Inicio", icon: <HomeIcon size={18} /> },
-              { id: "about", label: "Sobre mí", icon: <UserIcon size={18} /> },
-              { id: "skills", label: "Habilidades", icon: <SettingsIcon size={18} /> },
-              { id: "collaborations", label: "Colaboraciones", icon: <UsersRoundIcon size={18} /> },
-            ].map(({ id, label, icon }) => (
+        <div className="pill-bar" role="menubar" aria-label="Secciones">
+          {LINKS.map(({ id, label, Icon, aria }) => {
+            const isActive = activeSection === id;
+            return (
               <button
                 key={id}
+                type="button"
+                role="menuitem"
+                className={["pill-item", isActive ? "is-active" : ""].join(" ")}
+                onClick={() => scrollToSection(id)}
+                aria-label={aria}
+                aria-current={isActive ? "page" : undefined}
+              >
+                {isActive && (
+                  <motion.span
+                    layoutId="nav-pill"
+                    className="pill-bg"
+                    transition={{ type: "spring", stiffness: 500, damping: 40, mass: 1 }}
+                    aria-hidden="true"
+                  />
+                )}
+                <Icon size={18} />
+                <span>{label}</span>
+              </button>
+            );
+          })}
+          <button
+            type="button"
+            onClick={toggleTheme}
+            className="pill-item theme-pill"
+            aria-label="Cambiar tema"
+            title="Cambiar tema"
+          >
+            {isDarkMode ? <SunIcon size={18} /> : <MoonIcon size={18} />}
+            <span>{isDarkMode ? "" : ""}</span>
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile (reutiliza tu menú móvil actual) */}
+      <div className="nav-mobile">
+        <HamburgerButton
+          isOpen={isMenuOpen}
+          onClick={toggleMenu}
+          aria-controls="mobile-menu"
+          aria-expanded={isMenuOpen}
+          aria-label={isMenuOpen ? "Cerrar menú" : "Abrir menú"}
+        />
+        {isMenuOpen && (
+          <div id="mobile-menu" className="mobile-menu" role="dialog" aria-modal="true" aria-label="Menú móvil">
+            {[
+              { id: "presentation", label: "Inicio", Icon: HomeIcon },
+              { id: "about", label: "Sobre mí", Icon: UserIcon },
+              { id: "skills", label: "Habilidades", Icon: SettingsIcon },
+              { id: "collaborations", label: "Colaboraciones", Icon: UsersRoundIcon },
+            ].map(({ id, label, Icon }) => (
+              <button
+                key={id}
+                type="button"
                 className={`nav-button-mobile ${activeSection === id ? "active" : ""}`}
                 onClick={() => {
                   scrollToSection(id);
-                  toggleMenu() ;
+                  toggleMenu();
                 }}
               >
-                {icon} {label}
+                <Icon size={18} /> {label}
               </button>
             ))}
 
-            <button onClick={toggleTheme} className="theme-toggle-mobile" aria-label="Cambiar tema">
+            <button type="button" onClick={toggleTheme} className="theme-toggle-mobile" aria-label="Cambiar tema">
               {isDarkMode ? <SunIcon size={18} /> : <MoonIcon size={18} />}
             </button>
           </div>

@@ -23,7 +23,7 @@ const Collaborations = () => {
       url: "https://saucfloristeria.com",
     },
     {
-      name: "DevLink",
+      name: "DevLink", 
       img: "https://res.cloudinary.com/dw9b8eqmc/image/upload/v1747454116/PortofolioMarcMateo/DevLinkMockup444_imop50.png",
       description: "Plataforma para conectar desarrolladores con oportunidades.",
       url: "https://devlink.com",
